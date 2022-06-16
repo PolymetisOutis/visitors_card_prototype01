@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block head %}{% endblock %}  
+{% block title%}対応情報確認{% endblock %}
+
+    {% block header %}
+    <h1>投稿内容確認</h1>
+    {% endblock %}
+{% block content %}
+    <div class="container-fluid">
+      <div class="row">
+        <form
+          action="{% url 'visitors_card_app:sent_contact' visitor.pk %}"
+          method="post"
+        >
+          {% csrf_token %}
+          <h1>Confirm!!</h1>
+          <p>日付：{{ visitor.date }}　時刻：{{ visitor.time }}</p>
+          <p>会社名：{{ visitor.company_name }}</p>
+          <p>氏名：{{ visitor.visitor_name }}</p>
+            
+          <p>訪問先担当者：{{ visitor.position }}　/　{{ visitor.interviewer }}</p>
+          <input type="hidden" name="post" value="{{ visitor.position }}">
+          <p>担当者：{{ interviewer }}</p>
+          <input type="hidden" name="interviewer" value="{{ interviewer }}">
+          <p>退室時刻：{{ time }}</p>
+          <input type="hidden" name="time" value="{{ time }}">
+          <p>内容：{{ contents }}</p>
+          <input type="hidden" name="contents" value="{{ contents }}">
+
+          <button type="button" class="btn btn-primary btn-lg" onClick="javascript:history.go(-1);">
+            修正する
+          </button>
+          <button type="submit" class="btn btn-primary btn-lg" style="background-color: rgb(135, 137, 6)" onclick="location.href='{% url 'visitors_card_app:sent_contact' visitor.pk %}'" autofocus>
+            送信
+          </button>
+        </form>
+      </div>
+    </div>
+{% endblock %}

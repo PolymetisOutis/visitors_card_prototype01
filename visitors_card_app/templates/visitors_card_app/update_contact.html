@@ -1,0 +1,248 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block head %}
+
+  {% comment %} 来訪者カード等において、日付・時刻の入力フォームのデザインをNarito先生の教えを反映させるため下記配置 {% endcomment %}
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+      {% comment %} 日付の日本語表記の為配置 {% endcomment %}
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+      {% comment %} StackOverflow由来の配置　datepickerが適用されなかった為 {% endcomment %}
+      {% comment %} <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script> {% endcomment %}
+  {% comment %} datepicker元サイトから借用 {% endcomment %}
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+      {% comment %} 時刻のウィジェット適用の為以下配置 {% endcomment %}
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.min.js"></script>
+
+
+{% endblock %}  
+{% block title%}担当者編集{% endblock %}
+
+    {% block header %}
+    <h1 style="text-align: center;">担当者投稿内容編集</h1>
+    {% endblock %}
+{% block content %}
+  <div class="container-fluid">
+    <div class="row">
+
+            {% comment %} <div>
+            {{msg}}<br><br>
+            </div> {% endcomment %}
+            <h3>来訪日時</h3>
+            {% comment %} <div class="box"> {% endcomment %}
+              <div class="col" style="padding: 0; padding-left: 12px;">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="theme-label-contact form-control">来訪日</div>
+                  </div>
+                  <div class="form-control">{{ visitor.date }}</div>
+                </div>
+              </div>
+              <div class="col" style="padding: 0; padding-right: 12px;">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="theme-label-time-contact form-control">入室時刻</div>
+                  </div>
+                  <div class="form-control">{{ visitor.time }}</div>
+                </div>
+              </div>
+            {% comment %} </div> {% endcomment %}
+              <h3>来訪者</h3>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="theme-label-contact form-control">会社名</div>
+                </div>
+                <div class="form-control">{{ visitor.company_name }}</div>
+              </div>
+              <div class="col-8" style="padding: 0; padding-left: 12px;">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="theme-label-contact form-control">お名前</div>
+                </div>
+                <div class="form-control">{{ visitor.visitor_name }}</div>
+              </div>
+              </div>
+              <div class="col-4" style="padding: 0; padding-right: 12px;">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="theme-label-tempcheck-contact form-control">検温</div>
+                  </div>
+                  <div class="form-control">{{ visitor.temperature }}</div>
+                </div>
+              </div>
+            </div>
+            {% if visitor.accompany1_name %}
+            <div class="row" style="padding: 0;">
+              {% comment %} <div class="accompany1"> {% endcomment %}
+              <div class="col-8" style="padding: 0; padding-left: 12px;">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="theme-label-contact form-control">お名前</div>
+                </div>
+                <div class="form-control">{{ visitor.accompany1_name }}</div>
+              </div>
+              </div>
+              <div class="col-4" style="padding: 0; padding-right: 12px;">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="theme-label-tempcheck-contact form-control">検温</div>
+                  </div>
+                  <div class="form-control">{{ visitor.accompany1_temp }}</div>
+                </div>
+              </div>
+              {% comment %} </div> {% endcomment %}
+            </div>
+            {% endif %}
+            {% if visitor.accompany2_name %}
+              {% comment %} </div> {% endcomment %}
+              {% comment %} <div class="accompany2" style="display: none;"> {% endcomment %}
+            <div class="row" style="padding: 0;">
+              <div class="col-8" style="padding: 0; padding-left: 12px;">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="theme-label-contact form-control">お名前</div>
+                </div>
+                <div class="form-control">{{ visitor.accompany2_name }}</div>
+              </div>
+              </div>
+              <div class="col-4" style="padding: 0; padding-right: 12px;">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="theme-label-tempcheck-contact form-control">検温</div>
+                  </div>
+                  <div class="form-control">{{ visitor.accompany2_temp }}</div>
+                </div>
+              </div>
+              </div>
+            </div>
+            {% endif %}
+            {% if visitor.accompany3_name %}
+              {% comment %} </div> {% endcomment %}
+              {% comment %} <div class="accompany3" style="display: none;"> {% endcomment %}
+            <div class="row">
+              <div class="col-8" style="padding: 0; padding-left: 12px;">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="theme-label-contact form-control">お名前</div>
+                </div>
+                <div class="form-control">{{ visitor.accompany3_name }}</div>
+              </div>
+              </div>
+              <div class="col-4" style="padding: 0; padding-right: 12px;">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="theme-label-tempcheck-contact form-control">検温</div>
+                  </div>
+                  <div class="form-control">{{ visitor.accompany3_temp }}</div>
+                </div>
+              </div>
+              </div>
+            </div>
+            {% endif %}
+            
+        <div class="row">
+            <h3>訪問先</h3>
+            <div class="input-group">
+  
+              <div class="input-group-prepend">
+                <div class="theme-label-contact form-control">担当者</div>
+              </div>
+            
+  
+              {% comment %} <div class="col-3" style="padding-left: 0px; padding-right: 0px"> {% endcomment %}
+              <div class="left-column-contact">
+                <div class="form-control">{{ visitor.position }}</div>
+              </div>
+              {% comment %} <div class="col-7" style="padding-right: -12px;"> {% endcomment %}
+              <div class="right-column-contact">
+                <div class="form-control">{{ visitor.interviewer }}</div>
+              </div>
+            </div>
+  
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="theme-label-textarea-contact form-control" rows="5">ご用件</div>
+              </div>
+              <div class="form-control">{{ visitor.content | linebreaksbr }}</div>
+            </div>
+        </div>
+
+
+        <h3>担当者記入欄<span style="color: red;">*</span></h3>
+        <form method="post">
+          {% csrf_token %}
+         <div class="row">
+         
+             <div class="col" style="padding: 0; padding-left: 12px;">
+                 <div class="input-group">
+                   <div class="input-group-prepend">
+                     <div class="theme-label-contact-edit form-control">担当者</div>
+                   </div>
+                   {% render_field  form.interviewer  class="form-control" style="width: 6rem;" %}
+                 </div>
+             </div>
+             <div class="col" style="padding: 0; padding-right: 12px;">
+                 <div class="input-group">
+                     <div class="input-group-prepend">
+                     <div class="theme-label-time-contact-edit form-control">退室時刻</div>
+                     </div>
+                     {% render_field  form.time  class="form-control" %}
+                 </div>
+             </div>
+             <div class="input-group">
+                 <div class="input-group-prepend">
+                 <div class="theme-label-textarea-contact-edit form-control" rows="5">内容</div>
+                 </div>
+                 {% render_field  form.contents  class="form-control" %}
+             </div>
+ 
+             <div>
+             <br>
+             </div>
+                 
+             <div class="row" style="padding-right: 1px; padding-left: 24px;">
+             <button type="submit" class="btn btn-primary btn-lg" style="background-color:#999900;" autofocus>更新</button>
+             </div>
+ 
+             <div>
+             <br>
+             </div>
+             
+         </div>
+        </form>
+
+    </div>
+  </div>
+  
+  <script>
+    $(function () {
+      // 日付は、年-月-日 の形式でお願いする。
+      let dateFormat = 'yy-mm-dd';
+      $('#id_date').datepicker({
+          dateFormat: dateFormat
+      });
+    });
+    
+    $(function () {
+      // timedropper
+      $("#id_time").timeDropper({
+          format: "H:mm",
+          setCurrentTime: false,
+      });
+    });
+
+
+    $(function () {
+      // timedropper
+      $("#id_time_test").timeDropper({
+          format: "H:mm",
+          setCurrentTime: true,
+      });
+    });
+  </script>
+{% endblock %}

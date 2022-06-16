@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block head %}
+{% endblock %}  
+{% block title%}{% endblock %}
+
+{% block header %}
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+          
+    <h3>一括削除<span style="color: red;">*</span></h3>
+    <h4>※下記登録内容を削除してもよろしいですか？※</h4>
+      {% csrf_token %}
+      <h3>来訪日時</h3>
+      {% comment %} <div class="box"> {% endcomment %}
+        <div class="row">
+        <div class="col" style="padding: 0; padding-left: 12px;">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="theme-label-contact form-control">来訪日</div>
+            </div>
+            <div class="form-control">{{ visitors.date }}</div>
+          </div>
+        </div>
+        <div class="col" style="padding: 0; padding-right: 12px;">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="theme-label-time-contact form-control">入室時刻</div>
+            </div>
+            <div class="form-control">{{ visitors.time }}</div>
+          </div>
+        </div>
+      </div>
+      {% comment %} </div> {% endcomment %}
+        <h3>来訪者</h3>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="theme-label-contact form-control">会社名</div>
+          </div>
+          <div class="form-control">{{ visitors.company_name }}</div>
+        </div>
+      <div class="row">
+        <div class="col-8" style="padding: 0; padding-left: 12px;">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="theme-label-contact form-control">お名前</div>
+          </div>
+          <div class="form-control">{{ visitors.visitor_name }}</div>
+        </div>
+        </div>
+        <div class="col-4" style="padding: 0; padding-right: 12px;">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="theme-label-tempcheck-contact form-control">検温</div>
+            </div>
+            <div class="form-control">{{ visitors.temperature }}</div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <h3>同行者</h3>
+      {% if visitors.accompany1_name %}
+      <div class="row" style="padding: 0; padding-right: 25px;">
+        {% comment %} <div class="accompany1"> {% endcomment %}
+        <div class="col-8" style="padding: 0; padding-left: 12px;">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="theme-label-contact form-control">お名前</div>
+          </div>
+          <div class="form-control">{{ visitors.accompany1_name }}</div>
+        </div>
+        </div>
+        <div class="col-4" style="padding: 0; padding-right: 12px;">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="theme-label-tempcheck-contact form-control">検温</div>
+            </div>
+            <div class="form-control">{{ visitors.accompany1_temp }}</div>
+          </div>
+        </div>
+        {% comment %} </div> {% endcomment %}
+      </div>
+      {% endif %}
+      {% if visitors.accompany2_name %}
+        {% comment %} </div> {% endcomment %}
+        {% comment %} <div class="accompany2" style="display: none;"> {% endcomment %}
+      <div class="row" style="padding: 0; padding-right: 25px;">
+        <div class="col-8" style="padding: 0; padding-left: 12px;">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="theme-label-contact form-control">お名前</div>
+          </div>
+          <div class="form-control">{{ visitors.accompany2_name }}</div>
+        </div>
+        </div>
+        <div class="col-4" style="padding: 0; padding-right: 12px;">
+          <div class="inut-group">
+            <div class="input-group-prepend">
+              <div class="theme-label-tempcheck-contact form-control">検温</div>
+            </div>
+            <div class="form-control">{{ visitors.accompany2_temp }}</div>
+          </div>
+        </div>
+        </div>
+      </div>
+      {% endif %}
+      {% if visitors.accompany3_name %}
+        {% comment %} </div> {% endcomment %}
+        {% comment %} <div class="accompany3" style="display: none;"> {% endcomment %}
+      <div class="row" style="padding: 0; padding-right: 25px;">
+        <div class="col-8" style="padding: 0; padding-left: 12px;">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="theme-label-contact form-control">お名前</div>
+          </div>
+          <div class="form-control">{{ visitors.accompany3_name }}</div>
+        </div>
+        </div>
+        <div class="col-4" style="padding: 0; padding-right: 12px;">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="theme-label-tempcheck-contact form-control">検温</div>
+            </div>
+            <div class="form-control">{{ visitors.accompany3_temp }}</div>
+          </div>
+        </div>
+        </div>
+      </div>
+      {% endif %}
+      
+  <div class="row">
+      <h3>訪問先</h3>
+      <div class="input-group">
+
+        <div class="input-group-prepend">
+          <div class="theme-label-contact form-control">担当者</div>
+        </div>
+      
+
+        {% comment %} <div class="col-3" style="padding-left: 0px; padding-right: 0px"> {% endcomment %}
+        <div class="left-column-contact">
+          <div class="form-control">{{ visitors.position }}</div>
+        </div>
+        {% comment %} <div class="col-7" style="padding-right: -12px;"> {% endcomment %}
+        <div class="right-column-contact">
+          <div class="form-control">{{ visitors.interviewer }}</div>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="theme-label-textarea-contact form-control" rows="5">ご用件</div>
+        </div>
+        <div class="form-control">{{ visitors.content | linebreaksbr }}</div>
+      </div>
+  </div>
+
+
+    {% if visitors.contact %}
+      <div>
+      <br>
+      </div>
+    <div class="row">
+    
+        <div class="col" style="padding: 0; padding-left: 12px;">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="theme-label-contact-edit form-control">担当者</div>
+              </div>
+              <div class="form-control">{{ visitors.contact.interviewer }}</div>
+            </div>
+        </div>
+        <div class="col" style="padding: 0; padding-right: 12px;">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <div class="theme-label-time-contact-edit form-control">退室時刻</div>
+                </div>
+                <div class="form-control">{{ visitors.contact.time }}</div>
+            </div>
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+            <div class="theme-label-textarea-contact-edit form-control" rows="5">内容</div>
+            </div>
+            <div class="form-control">{{ visitors.contact.contents | linebreaksbr }}</div>
+            {% comment %} {{ visitors.contact.contents | linebreaksbr}} {% endcomment %}
+        </div>
+      {% endif %}
+        <div>
+        <br>
+        </div>
+        <form method="post">
+          {% csrf_token %}
+        <div class="row" style="padding-right: 1px; padding-left: 24px;">
+        <button class="btn btn-primary btn-lg" style="background-color:#999900;" autofocus>更新</button>
+        </div>
+        </form>
+  </div>
+</div>
+{% endblock %}
+
