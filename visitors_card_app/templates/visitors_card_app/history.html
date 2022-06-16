@@ -23,9 +23,11 @@
        <!-- メッセージ表示 -->
        {% if messages %}
        {% for message in messages %}
+       {% if message != ' You have signed out. ' %}
        <div class="alert alert-success" role="alert">
           {{ message }}
        </div>
+       {% endif %}
        {% endfor %}
        {% endif %}
   

@@ -1,6 +1,23 @@
 {% extends 'base.html' %}
 {% comment %} {% load widget_tweaks %} {% endcomment %}
-{% block head %}{% endblock %}  
+{% block head %}
+  {% comment %} 来訪者カード等において、日付・時刻の入力フォームのデザインをNarito先生の教えを反映させるため下記配置 {% endcomment %}
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+      {% comment %} 日付の日本語表記の為配置 {% endcomment %}
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+      {% comment %} StackOverflow由来の配置　datepickerが適用されなかった為 {% endcomment %}
+      {% comment %} <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script> {% endcomment %}
+  {% comment %} datepicker元サイトから借用 {% endcomment %}
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+      {% comment %} 時刻のウィジェット適用の為以下配置 {% endcomment %}
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.min.js"></script>
+{% endblock %}  
 {% block title%}対応状況詳細{% endblock %}
     {% block header %}
     <h1 style="text-align: center;">詳細</h1>
@@ -244,7 +261,7 @@
                     <div class="input-group-prepend">
                     <div class="theme-label-time-contact-edit form-control">退室時刻</div>
                     </div>
-                    <input name="time" type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                    <input name="time" type="text" id="id_time" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
                 </div>
             </div>
             <div class="input-group">
@@ -274,5 +291,14 @@
         {% endif %}
       </div>
     </div>
-
+<script>
+  
+  $(function () {
+    // timedropper
+    $("#id_time").timeDropper({
+        format: "H:mm",
+        setCurrentTime: false,
+    });
+  });
+</script>
 {% endblock %}

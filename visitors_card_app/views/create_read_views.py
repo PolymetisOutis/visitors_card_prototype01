@@ -160,18 +160,18 @@ def history(request, page=1):
                 visitors |= posted_visitors.filter(id__in=list_of_ids)
 
 
-                print('if contact_objects')
-                print(visitors)
-                print('Contact contact テスト')
-                test_obj = Contact.objects.filter(contents__icontains='緑茶')[0]
-                print(test_obj.contact.pk)
-                test_visitor = Visitors.objects.filter(id=test_obj.contact.pk)
-                print(test_visitor)
-                print('Contact contact テスト2')
-                test_list = [test_obj.contact.pk]
-                print(test_list)
-                test_visitor2 = Visitors.objects.filter(id__in=test_list)
-                print(test_visitor2)
+                # print('if contact_objects')
+                # print(visitors)
+                # print('Contact contact テスト')
+                # test_obj = Contact.objects.filter(contents__icontains='緑茶')[0]
+                # print(test_obj.contact.pk)
+                # test_visitor = Visitors.objects.filter(id=test_obj.contact.pk)
+                # print(test_visitor)
+                # print('Contact contact テスト2')
+                # test_list = [test_obj.contact.pk]
+                # print(test_list)
+                # test_visitor2 = Visitors.objects.filter(id__in=test_list)
+                # print(test_visitor2)
         visitors = visitors.distinct()
         print(visitors)
     """
@@ -180,7 +180,7 @@ def history(request, page=1):
     """
     ページネーション
     """
-    paginator = Paginator(visitors, 6)
+    paginator = Paginator(visitors, 3)
 
     try:
         visitors = paginator.page(page)
