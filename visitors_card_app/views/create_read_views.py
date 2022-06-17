@@ -180,7 +180,7 @@ def history(request, page=1):
     """
     ページネーション
     """
-    paginator = Paginator(visitors, 3)
+    paginator = Paginator(visitors, 8)
 
     try:
         visitors = paginator.page(page)

@@ -16,8 +16,8 @@
     <form action="{% url 'visitors_card_app:confirm' %}" method="post">
       {% csrf_token %}
       <div class="row">
-        <a href="{% url 'visitors_card_app:history' page=1 %}" style="text-align: center" width="70px" height="70px">
-        <img class="img-sp" style="text-align: center" src="/media/logo.svg" width="70px" height="70px">
+        <a href="{% url 'visitors_card_app:history' page=1 %}" style="text-align: center">
+        <img class="img-sp" style="text-align: center" src="/media/logo.svg" width="100px" height="100px">
         </a>
         <h1 class="h1-title" style="text-align: center">来訪者カード</h1>
         {% comment %} <div>
