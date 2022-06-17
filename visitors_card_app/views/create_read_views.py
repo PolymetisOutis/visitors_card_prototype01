@@ -28,8 +28,8 @@ def welcome(request):
 
 def welcome_widget(request):
     form = VisitorsForm()
-    print(form)
-    print(dir(form))
+    # print(form)
+    # print(dir(form))
     context = {
         'form': form,
     }

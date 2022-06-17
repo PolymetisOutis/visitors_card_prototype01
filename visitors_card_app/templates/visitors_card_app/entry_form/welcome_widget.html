@@ -47,7 +47,6 @@
       {% csrf_token %}
       <div class="row">
         {% if user.is_authenticated %}
-<<<<<<< HEAD
         <a href="{% url 'visitors_card_app:history' page=1 %}" style="text-align: center" width="70px" height="70px">
         <img class="img-sp" style="text-align: center" src="/media/logo.svg" width="100px" height="100px">
         </a>
