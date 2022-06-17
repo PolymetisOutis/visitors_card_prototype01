@@ -9,7 +9,7 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage
-
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -81,6 +81,7 @@ def sent(request):
     return render(request, 'visitors_card_app/lazy/thankyou.html')
 
 
+@login_required
 def history(request, page=1):
     visitors = Visitors.objects.all().order_by('-id')
     contact_objects = Contact.objects.all()
@@ -180,7 +181,7 @@ def history(request, page=1):
     """
     ページネーション
     """
-    paginator = Paginator(visitors, 3)
+    paginator = Paginator(visitors, 8)
 
     try:
         visitors = paginator.page(page)
