@@ -24,4 +24,7 @@ urlpatterns = [
 
     path('delete_contact/<int:pk>/', views.ContactDelete.as_view(), name='delete_contact'),
     path('delete_contact_all/<int:pk>/', views.VisitorsDelete.as_view(), name='delete_contact_all'),
+
+    # 統計情報メニューのpath
+    path('analysis_index/', views.analysis_index, name='analysis_index'),
 ]
