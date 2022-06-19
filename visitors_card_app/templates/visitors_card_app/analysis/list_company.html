@@ -26,9 +26,15 @@
             </button>
           <div class="container">
             <div class="row">
-              <div class="col-7">             
-                  <h2>Main</h2>
-                  1か月の範囲でコンタクト履歴をリスト表示させる
+              <div class="col-5">             
+                  <h2>来訪企業</h2>
+              </div>
+              <div class="col-2">
+                <form class="form-inline my-2 my-lg-0 ml-auto" method="post">
+                  {% csrf_token %}
+                  <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="search_form">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
               </div>
                 <div class="col-2">
                   <form method="post">
@@ -68,6 +74,20 @@
                 </form>
               </div>
             </div>
+            {% comment %} ここから一覧表示 {% endcomment %}
+            <p><a href="#">Salesforce(5)</a></p>
+            <p><a href="#">テストデータ(2)</a></p>
+
+
+
+
+
+
+
+
+
+
+            {% comment %} ここまでコンテナ {% endcomment %}
           </div>
         {% comment %} </div> {% endcomment %}
   </div>

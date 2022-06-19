@@ -1,18 +1,22 @@
     <nav id="sidebar">
 
         <ul class="list-unstyled components">
+            <p></p>
+            <li>
+                <a href="{% url 'visitors_card_app:analysis_index' %}">トップ</a>
+            </li>
             <li>
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle js-dropdown">カテゴリー</a>
                 <div class="js-dropdown-menu">
                 <ul class="list-unstyled" id="homeSubmenu">
                     <li>
-                        <a href="#">企業</a>
+                        <a href="{% url 'visitors_card_app:list_company' %}">企業</a>
                     </li>
                     <li>
-                        <a href="#">訪問者</a>
+                        <a href="{% url 'visitors_card_app:list_name' %}">訪問者</a>
                     </li>
                     <li>
-                        <a href="#">担当者</a>
+                        <a href="{% url 'visitors_card_app:list_interviewer' %}">担当者</a>
                     </li>
                     <li>
                         <a href="#">一覧</a>
@@ -20,7 +24,7 @@
                 </ul>
                 </div>
             </li>
-            <li>
+            {% comment %} <li>
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle js-dropdown2">期間</a>
                 <div class="js-dropdown-menu2">
                 <ul class="list-unstyled" id="pageSubmenu" style="collapse: hide;">
@@ -32,7 +36,7 @@
                     </li>
                 </ul>
                 </div>
-            </li>
+            </li> {% endcomment %}
         </ul>
     </nav>
 
