@@ -9,8 +9,8 @@
 
 {% endblock %}
 
-{% block title%}統計{%endblock %}
-{% block header %}<h1>統計情報</h1>{% endblock %}
+{% block title%}集計{%endblock %}
+{% block header %}<h1>集計情報</h1>{% endblock %}
 
 {% block content %}
 <div class="row">
@@ -27,16 +27,16 @@
           <div class="container">
             <div class="row">
               <div class="col-7">             
-                  <h2>Main</h2>
-                  1か月の範囲でコンタクト履歴をリスト表示させる
+                  <h2>1日当たりの訪問者数　　　　　　　　合計{{ total }}件</h2>
               </div>
                 <div class="col-2">
                   <form method="post">
                   {% csrf_token %}
                       <select name="narrow_period">
-                        <option value="1month">直近1か月</option>
+                        <option value="1month" selected>直近1か月</option>
                         <option value="3months">直近3か月</option>
-                        <option value="all_period" selected>全期間</option>
+                        <option value="1month">今月</option>
+                        <option value="1month">先々月</option>
                       </select>
                     <button name="go_narrow_period">絞り込み</button>
                   </form>
@@ -68,6 +68,7 @@
                 </form>
               </div>
             </div>
+            	<img src="data:image/png;base64,{{ chart | safe }}">
           </div>
         {% comment %} </div> {% endcomment %}
   </div>

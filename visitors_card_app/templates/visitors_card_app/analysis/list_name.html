@@ -9,8 +9,8 @@
 
 {% endblock %}
 
-{% block title%}統計{%endblock %}
-{% block header %}<h1>統計情報</h1>{% endblock %}
+{% block title%}集計{%endblock %}
+{% block header %}<h1>集計情報</h1>{% endblock %}
 
 {% block content %}
 <div class="row">
@@ -26,15 +26,8 @@
             </button>
           <div class="container">
             <div class="row">
-              <div class="col-5">             
+              <div class="col-4">             
                   <h2>来訪者</h2>
-              </div>
-              <div class="col-2">
-                <form class="form-inline my-2 my-lg-0 ml-auto" method="post">
-                  {% csrf_token %}
-                  <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="search_form">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
               </div>
               <div class="col-2">
                 <form method="post">
@@ -42,6 +35,9 @@
                     <select name="narrow_period">
                       <option value="1month">直近1か月</option>
                       <option value="3months">直近3か月</option>
+                        <option value="1month">今月</option>
+                        <option value="1month">先月</option>
+                        <option value="1month">先々月</option>
                       <option value="all_period" selected>全期間</option>
                     </select>
                   <button name="go_narrow_period">絞り込み</button>
@@ -71,6 +67,17 @@
                     <option value="12月">12月</option>
                   </select>
                   <button name="go_specify_period">期間指定</button>
+                </form>
+              </div>
+              <div class="col-3">
+                <form class="form-inline my-2 my-lg-0 ml-auto" method="post">
+                  {% csrf_token %}
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" aria-label="" aria-describedby="basic-addon1" name="search_form" style="margin-left: 25px;">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-success" type="button">Search</button>
+                    </div>
+                  </div>
                 </form>
               </div>
             </div>

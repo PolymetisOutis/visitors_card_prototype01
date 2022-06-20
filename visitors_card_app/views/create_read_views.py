@@ -195,7 +195,7 @@ def history(request, page=1):
     }
 
     """
-    統計情報に向けたテスト
+    集計情報に向けたテスト
     """
     # visitor_type = Visitors.objects.all().values_list('visitor_name', flat=True).order_by('visitor_name').distinct()
     # print(visitor_type)
